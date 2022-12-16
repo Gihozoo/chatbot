@@ -2,18 +2,18 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="../static/style.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
     <div class="row">
         <div class="col-md-10 mr-auto ml-auto">
-            <h1>Pythonscholar ChatBot</h1>
+            <h1>Logistics ChatBot</h1>
             <form>
                 <div id="chatbox">
                     <div class="col-md-8 ml-auto mr-auto">
-                        <p class="botText"><span>Hi! I'm Pythonscholar.</span></p>
+                        <p class="botText"><span>Hi! I'm Logibot.</span></p>
                     </div>
                 </div>
                 <div id="userInput" class="row">
@@ -42,7 +42,7 @@
                         msg: rawText,
                     },
                     type: "POST",
-                    url: "/get",
+                    url: "/",
                 }).done(function (data) {
                     var botHtml = '<p class="botText"><span>' + data + "</span></p>";
                     $("#chatbox").append($.parseHTML(botHtml));

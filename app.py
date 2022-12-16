@@ -15,10 +15,10 @@ lemmatizer = WordNetLemmatizer()
 nltk.download('punkt')
 nltk.download('wordnet')
 
-intents = json.loads(open('static/model/price_intents.json').read())
+intents = json.loads(open('static/model/intentss.json').read())
 lem_words = pickle.load(open('static/model/lem_words.pkl', 'rb'))
 classes = pickle.load(open('static/model/classes.pkl', 'rb'))
-model = load_model('static/model/price_negotiator_model.h5')
+model = load_model('static/model/chatbot_model.h5')
 
 context_state = None  # Check the context of the words
 
@@ -57,6 +57,8 @@ def chat(text):
     global context_state
     # This is what the bot will say if it doesn't understand what the user is saying
     default_responses = ['Sorry, Im not sure I know what you mean! You could try rephrasing that or saying something else!',
+                         'You confuse me human. Lets talk about something else.',
+                         'Im not sure what that means and I dont really care. Lets talk about something else',
                          'I dont understand that! Try rephrasing or saying something else.']
 
     text_bag = bag_ow(text, lem_words, show_details=False)
@@ -88,7 +90,7 @@ def chat(text):
 @app.route("/", methods=["POST", "GET"])
 def home():
     if request.method == "POST":
-        user_text = request.form.get("user_text")
+        user_text = request.form.get("msg")
         bot_text = chat(user_text)
         return bot_text
 
